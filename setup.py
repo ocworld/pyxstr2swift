@@ -27,6 +27,6 @@ setup(
         'pytest',
     ],
     entry_points={
-        'console_scripts': ['pyxstr2swift=main.__main__:main'],
+        'console_scripts': ['xstr2swift=main.__main__:main'],
     },
 )
