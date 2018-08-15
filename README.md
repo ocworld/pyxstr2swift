@@ -2,6 +2,7 @@
 Python package for a xcode strings file to a swift localized string file
 
 ```console
+//not yet
 foo@bar:~$ pip install pyxstr2swift
 ```
 
