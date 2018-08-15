@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import re
 import os
-from os.path import basename, splitext
-
-
 
 def get_keys_from_strings_file(strings_file_path):
     def comment_remover(text):
+
+        import re
+
         def replacer(match):
             s = match.group(0)
             if s.startswith('/'):
@@ -33,6 +32,9 @@ def get_keys_from_strings_file(strings_file_path):
 
 
 def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
+
+    from os.path import basename, splitext
+
     default_struct_name = splitext(basename(out_file_path))[0]
     struct_name = swift_struct_name if swift_struct_name != "" else default_struct_name
     headlines = ["import Foundation", "", "struct %s {" % struct_name]
