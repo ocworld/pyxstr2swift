@@ -4,7 +4,13 @@
 import logging
 import os
 
+
 def get_keys_from_strings_file(strings_file_path):
+    """
+    get keys from xcode strings file
+    :param strings_file_path: str. xcode strings file full path
+    :return:
+    """
     def comment_remover(text):
 
         import re
@@ -32,7 +38,14 @@ def get_keys_from_strings_file(strings_file_path):
 
 
 def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
-
+    '''
+    write string keys to swift file.
+    :param keys: strings keys
+    :param out_file_path: a target swift file path including .swift extension
+    :param swift_struct_name: swift struct name in a target swift file path.
+                              if "" outfile filename is used.
+    :return:
+    '''
     from os.path import basename, splitext
 
     default_struct_name = splitext(basename(out_file_path))[0]
@@ -49,18 +62,35 @@ def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
 
 
 def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite_if_out_path_exist=True):
+    '''
+    Generating swift file from xcode strings file.
 
-    if os.path.exists(strings_file_path) == False:
+    for example,
+
+    import Foundation
+
+    struct StringKeys {
+        static let key1 = "key1".localized
+    }
+
+    :param strings_file_path: str. xcode strings file full path
+    :param out_file_path: a target swift file path including .swift extension
+    :param swift_struct_name: swift struct name in a target swift file path.
+                              if "" outfile filename is used.
+    :param overwrite_if_out_path_exist: overwrite if a outpath already exist.
+    :return:
+    '''
+    if not os.path.exists(strings_file_path):
         logging.error('xstr2swift: %s is not exist' % strings_file_path)
-        raise OSError(2)    #ENOENT
+        raise OSError(2)  # ENOENT
 
-    if os.path.exists(out_file_path) == True:
+    if os.path.exists(out_file_path):
         if overwrite_if_out_path_exist == True:
             logging.info('xstr2swift: %s is removed' % out_file_path)
             os.remove(out_file_path)
         else:
             logging.error('xstr2swift: %s is not exist' % out_file_path)
-            raise OSError(17)   #EEXIST
+            raise OSError(17)  # EEXIST
 
     logging.info('xstr2swift: try to get_keys_from_strings_file(%s)' % out_file_path)
 
@@ -72,11 +102,11 @@ def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite
         raise err
     except OSError as err:
         logging.error('xstr2swift: failed to get_keys_from_strings_file %s with OSError (no: %d)(err: %s)' % (
-        strings_file_path, err.errno, err.message))
+            strings_file_path, err.errno, err.message))
         raise err
     except Exception as ex:
         logging.error('xstr2swift: failed to get_keys_from_strings_file %s with Exception (no: %d)(err: %s)' % (
-        strings_file_path, ex.errno, ex.message))
+            strings_file_path, ex.errno, ex.message))
         raise ex
 
     logging.info('xstr2swift: try to write_keys_to_swift_file(%s)' % out_file_path)
@@ -85,9 +115,9 @@ def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite
         write_keys_to_swift_file(keys, out_file_path, swift_struct_name)
     except OSError as err:
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with os error (no: %d)(err: %s)' % (
-        strings_file_path, err.errno, err.message))
+            strings_file_path, err.errno, err.message))
         raise err
     except Exception as ex:
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with exception (no: %d)(err: %s)' % (
-        strings_file_path, ex.errno, ex.message))
+            strings_file_path, ex.errno, ex.message))
         raise ex

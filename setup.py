@@ -29,4 +29,15 @@ setup(
     entry_points={
         'console_scripts': ['xstr2swift=main.__main__:main'],
     },
+    classifiers={
+        'Environment :: Console',
+        'Environment :: MacOS X',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Code Generators'
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6'
+    },
 )
