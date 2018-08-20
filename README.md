@@ -4,7 +4,7 @@ Python package for a Xcode strings file to a swift localized string file
 It is available in python2.7 and python3
 
 ```console
-foo@bar:~$ pip install pyxstr2swift
+foo@bar:~$ pip install -U pyxstr2swift
 ```
 
 ```console
