@@ -9,6 +9,7 @@ foo@bar:~$ pip install pyxstr2swift
 
 ```console
 foo@bar:~$ xstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
+foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
 ```
 
 For using it, you should import a string extension library or write it.
