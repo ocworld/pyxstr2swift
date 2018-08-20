@@ -11,6 +11,7 @@ def get_keys_and_values_from_strings_file(strings_file_path):
     :param strings_file_path: str. xcode strings file full path
     :return:
     """
+
     def comment_remover(text):
 
         import re
@@ -39,7 +40,7 @@ def get_keys_and_values_from_strings_file(strings_file_path):
     return kv_dic
 
 
-def write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_write_values_as_comment = False):
+def write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_write_values_as_comment=False):
     '''
     write string keys to swift file.
     :param kv_dic: dictionary for keys and values
@@ -69,7 +70,7 @@ def write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_wri
 def xstr2swift(strings_file_path, out_file_path,
                swift_struct_name="",
                overwrite_if_out_path_exist=True,
-               is_write_values_as_comment = False):
+               is_write_values_as_comment=False):
     '''
     Generating swift file from xcode strings file.
 
@@ -129,3 +130,29 @@ def xstr2swift(strings_file_path, out_file_path,
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with exception (no: %d)(err: %s)' % (
             strings_file_path, ex.errno, ex.message))
         raise ex
+
+
+def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(description='pyxstr2swift needs arguments')
+
+    parser.add_argument('source', type=str, help='Input source a strings file')
+    parser.add_argument('target', type=str, help='Input target a swift file')
+    parser.add_argument('structname', type=str, help='Input target a swift struct name')
+    parser.add_argument('-f', '--force', action='store_true', help='force to write a target file if already exist')
+    parser.add_argument('-m', '--comment', action='store_true', help='values are added as comment')
+    args = parser.parse_args()
+
+    is_forced = True if args.force else False
+    is_comment_value = True if args.comment else False
+    logging.info('source : %s' % args.source)
+    logging.info('target : %s' % args.target)
+    logging.info('structname : %s' % args.structname)
+    logging.info('is_forced : %s' % 'True' if args.force else 'False')
+    logging.info('is_comment_value : %s' % 'True' if args.comment else 'False')
+    xstr2swift(args.source, args.target, args.structname, is_forced, is_comment_value)
+
+
+if __name__ == "__main__":
+    main()

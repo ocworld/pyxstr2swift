@@ -8,11 +8,11 @@ with open('README.md') as f:
     readme = f.read()  # type: str
 
 with open('LICENSE') as f:
-    license = f.read()  # type: str
+    license = f.read() # type: str
 
 setup(
     name='pyxstr2swift',
-    version='0.1.0.dev2',
+    version='0.1.0.dev4',
     description='Python package for a xcode strings file to a swift localized string file',
     long_description=readme,
     author='Keunhyun Oh',
@@ -28,7 +28,7 @@ setup(
         'pytest',
     ],
     entry_points={
-        'console_scripts': ['xstr2swift=main.__main__:main'],
+        'console_scripts': ['xstr2swift=pyxstr2swift.pyxstr2swift:main'],
     },
     classifiers={
         'Environment :: Console',
