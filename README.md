@@ -1,6 +1,16 @@
 # pyxstr2swift
 Python package for a Xcode strings file to a swift localized string file
 
+For example,
+```swift
+import Foundation
+
+struct Localized {
+  static let edit = "edit".localized // edit
+}
+
+```
+
 It is available in python2.7 and python3
 
 ```console
