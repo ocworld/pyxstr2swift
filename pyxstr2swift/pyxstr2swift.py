@@ -5,9 +5,9 @@ import logging
 import os
 
 
-def get_keys_from_strings_file(strings_file_path):
+def get_keys_and_values_from_strings_file(strings_file_path):
     """
-    get keys from xcode strings file
+    get keys_and_values from xcode strings file
     :param strings_file_path: str. xcode strings file full path
     :return:
     """
@@ -32,15 +32,17 @@ def get_keys_from_strings_file(strings_file_path):
         contents = f.read()
 
     lines = comment_remover(contents).splitlines()
-    keys = [line.split('=')[0] for line in lines]
-    filtered_keys = filter(lambda line: line.strip() != "", keys)
-    return list(filtered_keys)
+    key_index = 0
+    value_index = 1
+    kv_list = list(filter(lambda kv: kv[key_index].strip() != "", [line.split('=') for line in lines]))
+    kv_dic = {kv[key_index]: kv[value_index].strip('";') for kv in kv_list}
+    return kv_dic
 
 
-def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
+def write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_write_values_as_comment = False):
     '''
     write string keys to swift file.
-    :param keys: strings keys
+    :param kv_dic: dictionary for keys and values
     :param out_file_path: a target swift file path including .swift extension
     :param swift_struct_name: swift struct name in a target swift file path.
                               if "" outfile filename is used.
@@ -53,7 +55,10 @@ def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
     headlines = ["import Foundation", "", "struct %s {" % struct_name]
     taillines = ["}", ""]
 
-    bodylines = ["  static let %s = \"%s\".localized" % (key, key) for key in keys]
+    if is_write_values_as_comment:
+        bodylines = ["  static let %s = \"%s\".localized // %s" % (key, key, value) for key, value in kv_dic.items()]
+    else:
+        bodylines = ["  static let %s = \"%s\".localized" % (key, key) for key in kv_dic.keys()]
 
     lines = headlines + bodylines + taillines
 
@@ -61,7 +66,10 @@ def write_keys_to_swift_file(keys, out_file_path, swift_struct_name=""):
         f.write('\n'.join(lines))
 
 
-def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite_if_out_path_exist=True):
+def xstr2swift(strings_file_path, out_file_path,
+               swift_struct_name="",
+               overwrite_if_out_path_exist=True,
+               is_write_values_as_comment = False):
     '''
     Generating swift file from xcode strings file.
 
@@ -85,7 +93,7 @@ def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite
         raise OSError(2)  # ENOENT
 
     if os.path.exists(out_file_path):
-        if overwrite_if_out_path_exist == True:
+        if overwrite_if_out_path_exist:
             logging.info('xstr2swift: %s is removed' % out_file_path)
             os.remove(out_file_path)
         else:
@@ -95,7 +103,7 @@ def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite
     logging.info('xstr2swift: try to get_keys_from_strings_file(%s)' % out_file_path)
 
     try:
-        keys = get_keys_from_strings_file(strings_file_path)
+        kv_dic = get_keys_and_values_from_strings_file(strings_file_path)
     except IOError as err:
         logging.error('xstr2swift: failed to get_keys_from_strings_file %s with IOError (no: %d)(err: %s)' % (
             strings_file_path, err.errno, err.message))
@@ -112,7 +120,7 @@ def xstr2swift(strings_file_path, out_file_path, swift_struct_name="", overwrite
     logging.info('xstr2swift: try to write_keys_to_swift_file(%s)' % out_file_path)
 
     try:
-        write_keys_to_swift_file(keys, out_file_path, swift_struct_name)
+        write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name, is_write_values_as_comment)
     except OSError as err:
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with os error (no: %d)(err: %s)' % (
             strings_file_path, err.errno, err.message))
