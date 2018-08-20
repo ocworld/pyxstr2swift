@@ -36,7 +36,7 @@ def get_keys_and_values_from_strings_file(strings_file_path):
     key_index = 0
     value_index = 1
     kv_list = list(filter(lambda kv: kv[key_index].strip() != "", [line.split('=') for line in lines]))
-    kv_dic = {kv[key_index]: kv[value_index].strip('";') for kv in kv_list}
+    kv_dic = {kv[key_index].strip(): kv[value_index].strip('"; ') for kv in kv_list}
     return kv_dic
 
 
