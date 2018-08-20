@@ -35,6 +35,9 @@ To use it in Xcode build pharses,
 5. Change Shell /bin/sh to /bin/bash (or /bin/zsh)
 6. Write shell command.
 For example,
+```console
 xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT}/Your project/Localized.swift" "Localized"
+```
+
 7. That' all! You run build now!
 
