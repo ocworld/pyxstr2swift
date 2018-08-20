@@ -29,6 +29,13 @@ https://github.com/ocworld/OHSwiftLocalizedString
 
 To use it in Xcode build pharses,
 1. Install this module using python PIP.
+If pip is not installed on your device, this command helps you. 
+
+```console
+foo@bar:~$ brew install python
+foo@bar:~$ pip3 install -U pyxstr2swift
+```
+
 2. Add a output swift file to your project
 3. Add a strings file to your project and write string keys and values
 4. Add Run Script to build pharses before Compile Sources
