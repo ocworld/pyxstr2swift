@@ -36,5 +36,17 @@ def test_xstr2swift(input_file_and_output_file):
     input_file_path, output_file_path = input_file_and_output_file
     converter.xstr2swift(input_file_path, output_file_path, "TEST")
 
+    test_base_dir_path = os.path.dirname(os.path.realpath(__file__))
+    expected_file_path = os.path.join(test_base_dir_path, "resources", "Strings.swift")
+
     assert os.path.exists(output_file_path)
     assert os.path.getsize(output_file_path) > 0
+
+    with open(expected_file_path, mode='r') as f:
+        expected_contents = f.read()
+
+    with open(output_file_path, mode='r') as f:
+        out_contents = f.read()
+
+    assert expected_contents == out_contents
+

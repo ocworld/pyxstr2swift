@@ -5,5 +5,5 @@
   Copyright © 2018년 Keunhyun Oh. All rights reserved.
 */
 
-test="test_value";
+test = "test_value";
 
