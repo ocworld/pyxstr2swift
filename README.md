@@ -46,6 +46,6 @@ For example,
 xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT}/Your project/Localized.swift" "Localized"
 ```
 
-7. That' all! You run build now!
+7. That' all! build Your project now!
 
 Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
