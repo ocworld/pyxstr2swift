@@ -49,3 +49,19 @@ xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT
 7. That' all! build Your project now!
 
 Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
+
+```console
+usage: xstr2swift [-h] [-f] [-m] source target structname
+
+pyxstr2swift needs arguments
+
+positional arguments:
+  source         Input source a strings file
+  target         Input target a swift file
+  structname     Input target a swift struct name
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -f, --force    force to write a target file if already exist
+  -m, --comment  values are added as comment
+```
