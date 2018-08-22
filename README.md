@@ -1,4 +1,5 @@
 # pyxstr2swift
+[![PyPI version shields.io](https://img.shields.io/pypi/v/ansicolortags.svg)](https://pypi.org/project/pyxstr2swift/)
 Python package for a Xcode strings file to a swift localized string file
 
 For example,
