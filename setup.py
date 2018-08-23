@@ -42,7 +42,8 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6'
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7'
     },
     project_urls={  # Optional
         'Bug Reports': 'https://github.com/ocworld/pyxstr2swift/issues',
