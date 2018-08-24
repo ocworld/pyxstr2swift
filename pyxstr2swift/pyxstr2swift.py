@@ -64,7 +64,7 @@ def _write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_wr
     lines = headlines + bodylines + taillines
 
     with io.open(out_file_path, mode='w+', encoding='utf-8') as f:
-        f.write('\n'.join(lines))
+        f.write(u'%s' % '\n'.join(lines))
 
 
 def xstr2swift(strings_file_path, out_file_path,
@@ -138,9 +138,9 @@ def main():
 
     parser = argparse.ArgumentParser(description='pyxstr2swift needs arguments')
 
-    parser.add_argument('source', type=str, help='Input source a strings file')
-    parser.add_argument('target', type=str, help='Input target a swift file')
-    parser.add_argument('structname', type=str, help='Input target a swift struct name')
+    parser.add_argument('source', type=str, help='source: a strings file')
+    parser.add_argument('target', type=str, help='target: a swift file')
+    parser.add_argument('structname', type=str, help='structname: if struct name in a target file')
     parser.add_argument('-f', '--force', action='store_true', help='force to write a target file if already exist')
     parser.add_argument('-m', '--comment', action='store_true', help='values are added as comment')
     args = parser.parse_args()

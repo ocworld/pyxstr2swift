@@ -43,10 +43,10 @@ def test_xstr2swift(input_file_and_output_file):
     assert os.path.getsize(output_file_path) > 0
 
     with io.open(expected_file_path, mode='r', encoding='utf-8') as f:
-        expected_contents = f.read().encode('utf-8')
+        expected_contents = f.read()
 
     with io.open(output_file_path, mode='r', encoding='utf-8') as f:
-        out_contents = f.read().encode('utf-8')
+        out_contents = f.read()
 
     assert expected_contents == out_contents
 
