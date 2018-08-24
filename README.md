@@ -26,7 +26,7 @@ test = "test_value";
 import Foundation
 
 struct Localized {
-  static let edit = "edit".localized // edit
+  static let test = "test".localized // test_value
 }
 
 ```
