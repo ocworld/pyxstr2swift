@@ -18,7 +18,7 @@ struct Localized {
 
 ```
 
-It is available in python2.7 and python3
+It is available in python2.7, 3.4, 3.5, 3.6, and 3.7
 
 ```console
 foo@bar:~$ pip install -U pyxstr2swift
@@ -43,6 +43,11 @@ foo@bar:~$ brew install python
 foo@bar:~$ pip3 install --upgrade pyxstr2swift
 ```
 
+or
+
+install anaconda and set configures
+https://www.anaconda.com/download/
+
 2. Add a output swift file to your project
 3. Add a strings file to your project and write string keys and values
 4. Add Run Script to build pharses before Compile Sources
@@ -54,6 +59,18 @@ For example,
 #export PATH="${HOME}/anaconda3/bin:$PATH"
 pip install --upgrade pyxstr2swift
 xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT}/Your project/Localized.swift" "Localized"
+```
+
+My project's shell command is that
+```console
+# .bash_profile includes export PATH="${HOME}/anaconda3/bin:$PATH"
+source ~/.bash_profile
+
+# a conda env is already created that name is iosdev
+conda activate iosdev
+pip install --upgrade pyxstr2swift
+xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localized.strings" "${SRCROOT}/My Project/Localized.swift" "Localized"
+conda deactivate
 ```
 
 7. That' all! build Your project now!
@@ -75,3 +92,6 @@ optional arguments:
   -f, --force    force to write a target file if already exist
   -m, --comment  values are added as comment
 ```
+
+## Test
+unittest on python 2.7, 3.4, 3.5, 3.6, 3.7
