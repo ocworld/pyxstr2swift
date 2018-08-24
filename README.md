@@ -20,11 +20,11 @@ struct Localized {
 
 It is available in python2.7, 3.4, 3.5, 3.6, and 3.7
 
-```console
+```bash
 foo@bar:~$ pip install -U pyxstr2swift
 ```
 
-```console
+```bash
 foo@bar:~$ xstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
 foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
 ```
@@ -38,7 +38,7 @@ To use it in Xcode build pharses,
 1. Install this module using python PIP.
 If pip is not installed on your device, this command helps you. 
 
-```console
+```bash
 foo@bar:~$ brew install python
 foo@bar:~$ pip3 install --upgrade pyxstr2swift
 ```
@@ -54,7 +54,7 @@ https://www.anaconda.com/download/
 5. Change Shell /bin/sh to /bin/bash (or /bin/zsh)
 6. Write shell command.
 For example,
-```console
+```bash
 #If you use anaconda, anaconda3/bin should be added to path
 #export PATH="${HOME}/anaconda3/bin:$PATH"
 pip install --upgrade pyxstr2swift
@@ -62,7 +62,7 @@ xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT
 ```
 
 My project's shell command is that
-```console
+```bash
 # .bash_profile includes export PATH="${HOME}/anaconda3/bin:$PATH"
 source ~/.bash_profile
 
@@ -77,7 +77,7 @@ conda deactivate
 
 Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
 
-```console
+```bash
 usage: xstr2swift [-h] [-f] [-m] source target structname
 
 pyxstr2swift needs arguments
