@@ -3,7 +3,7 @@
 
 import logging
 import os
-
+import io
 
 def _get_keys_and_values_from_strings_file(strings_file_path):
     """
@@ -29,7 +29,7 @@ def _get_keys_and_values_from_strings_file(strings_file_path):
         )
         return re.sub(pattern, replacer, text)
 
-    with open(strings_file_path, mode='r', encoding='utf-8') as f:
+    with io.open(strings_file_path, mode='r', encoding='utf-8') as f:
         contents = f.read()
 
     lines = _comment_remover(contents).splitlines()
@@ -63,7 +63,7 @@ def _write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_wr
 
     lines = headlines + bodylines + taillines
 
-    with open(out_file_path, mode='w+', encoding='utf-8') as f:
+    with io.open(out_file_path, mode='w+', encoding='utf-8') as f:
         f.write('\n'.join(lines))
 
 

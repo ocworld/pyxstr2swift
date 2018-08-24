@@ -5,7 +5,7 @@ import pyxstr2swift.pyxstr2swift as converter
 import os
 import pytest
 import tempfile
-
+import io
 
 @pytest.fixture
 def input_file_and_output_file():
@@ -42,11 +42,11 @@ def test_xstr2swift(input_file_and_output_file):
     assert os.path.exists(output_file_path)
     assert os.path.getsize(output_file_path) > 0
 
-    with open(expected_file_path, mode='r') as f:
-        expected_contents = f.read()
+    with io.open(expected_file_path, mode='r', encoding='utf-8') as f:
+        expected_contents = f.read().encode('utf-8')
 
-    with open(output_file_path, mode='r') as f:
-        out_contents = f.read()
+    with io.open(output_file_path, mode='r', encoding='utf-8') as f:
+        out_contents = f.read().encode('utf-8')
 
     assert expected_contents == out_contents
 
