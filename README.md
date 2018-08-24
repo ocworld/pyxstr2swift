@@ -9,6 +9,19 @@
 Python package for a Xcode strings file to a swift localized string file
 
 For example,
+
+```
+/* 
+  Strings.strings
+
+  Created by Keunhyun Oh on 2018. 8. 15..
+  Copyright © 2018년 Keunhyun Oh. All rights reserved.
+*/
+
+test = "test_value";
+
+```
+
 ```swift
 import Foundation
 
