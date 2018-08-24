@@ -40,7 +40,7 @@ If pip is not installed on your device, this command helps you.
 
 ```console
 foo@bar:~$ brew install python
-foo@bar:~$ pip3 install -U pyxstr2swift
+foo@bar:~$ pip3 install --upgrade pyxstr2swift
 ```
 
 2. Add a output swift file to your project
@@ -50,6 +50,9 @@ foo@bar:~$ pip3 install -U pyxstr2swift
 6. Write shell command.
 For example,
 ```console
+#If you use anaconda, anaconda3/bin should be added to path
+#export PATH="${HOME}/anaconda3/bin:$PATH"
+pip install --upgrade pyxstr2swift
 xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT}/Your project/Localized.swift" "Localized"
 ```
 
