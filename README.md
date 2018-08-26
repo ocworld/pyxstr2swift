@@ -41,7 +41,7 @@ foo@bar:~$ pip install -U pyxstr2swift
 
 ```bash
 foo@bar:~$ xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
-foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
+foo@bar:~$ python -m pyxstr2swift.xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
 ```
 
 
