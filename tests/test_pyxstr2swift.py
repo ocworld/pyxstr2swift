@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import pyxstr2swift.pyxstr2swift as converter
+import pyxstr2swift.xstr2swift as converter
 import os
 import pytest
 import tempfile
