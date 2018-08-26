@@ -57,7 +57,7 @@ def _write_keys_to_swift_file(kv_dic, out_file_path, tablename="", swift_struct_
     taillines = ["}", ""]
 
     if is_write_values_as_comment:
-        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\") , // %s" % (key, key, tablename, value) for key, value in kv_dic.items()]
+        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\") // %s" % (key, key, tablename, value) for key, value in kv_dic.items()]
     else:
         bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\")" % (
         key, key, tablename) for key in kv_dic.keys()]
