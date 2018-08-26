@@ -107,4 +107,7 @@ optional arguments:
 unittest on python 2.7, 3.4, 3.5, 3.6, 3.7
 
 ## References
-Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
+- https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
+Thanks to an author of this post
+- https://github.com/ocworld/OHSwiftLocalizedString
+It is help you to use localized strings
