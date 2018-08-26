@@ -1,5 +1,5 @@
 import Foundation
 
 struct TEST {
-  static let test = "test".localized
+  static let test = NSLocalizedString("test", tableName: "Strings", comment: "")
 }

@@ -40,7 +40,7 @@ def _get_keys_and_values_from_strings_file(strings_file_path):
     return kv_dic
 
 
-def _write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_write_values_as_comment=False):
+def _write_keys_to_swift_file(kv_dic, out_file_path, tablename="", swift_struct_name="", is_write_values_as_comment=False):
     '''
     write string keys to swift file.
     :param kv_dic: dictionary for keys and values
@@ -57,9 +57,10 @@ def _write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name="", is_wr
     taillines = ["}", ""]
 
     if is_write_values_as_comment:
-        bodylines = ["  static let %s = \"%s\".localized // %s" % (key, key, value) for key, value in kv_dic.items()]
+        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\") , // %s" % (key, key, tablename, value) for key, value in kv_dic.items()]
     else:
-        bodylines = ["  static let %s = \"%s\".localized" % (key, key) for key in kv_dic.keys()]
+        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\")" % (
+        key, key, tablename) for key in kv_dic.keys()]
 
     lines = headlines + bodylines + taillines
 
@@ -79,7 +80,7 @@ def xstr2swift(strings_file_path, out_file_path,
     import Foundation
 
     struct StringKeys {
-        static let key1 = "key1".localized
+        static let key1 = NSLocalizedString("key1", tableName: "Localizable.strings", comment: "")  // value
     }
 
     :param is_write_values_as_comment:
@@ -121,8 +122,14 @@ def xstr2swift(strings_file_path, out_file_path,
 
     logging.info('xstr2swift: try to write_keys_to_swift_file(%s)' % out_file_path)
 
+    from os.path import basename, splitext
+    tablename = splitext(basename(strings_file_path))[0]
+
+    if swift_struct_name == "":
+        swift_struct_name = tablename
+
     try:
-        _write_keys_to_swift_file(kv_dic, out_file_path, swift_struct_name, is_write_values_as_comment)
+        _write_keys_to_swift_file(kv_dic, out_file_path, tablename, swift_struct_name, is_write_values_as_comment)
     except OSError as err:
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with os error (no: %d)(err: %s)' % (
             strings_file_path, err.errno, err.message))
@@ -140,7 +147,7 @@ def main():
 
     parser.add_argument('source', type=str, help='source: a strings file')
     parser.add_argument('target', type=str, help='target: a swift file')
-    parser.add_argument('structname', type=str, help='structname: if struct name in a target file')
+    parser.add_argument('--structname', type=str, default="", help='structname: a struct name in a target file')
     parser.add_argument('-f', '--force', action='store_true', help='force to write a target file if already exist')
     parser.add_argument('-m', '--comment', action='store_true', help='values are added as comment')
     args = parser.parse_args()
@@ -152,6 +159,7 @@ def main():
     logging.info('structname : %s' % args.structname)
     logging.info('is_forced : %s' % 'True' if args.force else 'False')
     logging.info('is_comment_value : %s' % 'True' if args.comment else 'False')
+
     xstr2swift(args.source, args.target, args.structname, is_forced, is_comment_value)
 
 
