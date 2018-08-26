@@ -12,7 +12,7 @@ For example,
 
 ```
 /* 
-  Strings.strings
+  Localizable.strings
 
   Created by Keunhyun Oh on 2018. 8. 15..
   Copyright © 2018년 Keunhyun Oh. All rights reserved.
@@ -27,7 +27,7 @@ to
 ```swift
 import Foundation
 
-struct Localized {
+struct Localizable {
   static let test = "test".localized // test_value
 }
 
@@ -73,7 +73,7 @@ For example,
 #If you use anaconda, anaconda3/bin should be added to path
 #export PATH="${HOME}/anaconda3/bin:$PATH"
 pip install --upgrade pyxstr2swift
-xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localized.strings" "${SRCROOT}/Your project/Localized.swift" "Localized"
+xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localizable.strings" "${SRCROOT}/Your project/Localizable.swift" "Localizable"
 ```
 
 My project's shell command is that
@@ -84,13 +84,11 @@ source ~/.bash_profile
 # a conda env is already created that name is iosdev
 conda activate iosdev
 pip install --upgrade pyxstr2swift
-xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localized.strings" "${SRCROOT}/My Project/Localized.swift" "Localized"
+xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localizable.strings" "${SRCROOT}/My Project/Localizable.swift" "Localizable"
 conda deactivate
 ```
 
 7. That' all! build Your project now!
-
-Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
 
 ```bash
 usage: xstr2swift [-h] [-f] [-m] source target structname
@@ -110,3 +108,6 @@ optional arguments:
 
 ## Test
 unittest on python 2.7, 3.4, 3.5, 3.6, 3.7
+
+## References
+Thanks to an author of this post https://medium.com/ios-forever/ios에서-localization하는-gorgeous-한-방법-f82ac29d2cfe
