@@ -28,7 +28,7 @@ to
 import Foundation
 
 struct Localizable {
-  static let test = "test".localized // test_value
+  static let test = NSLocalizedString("test", tableName: "Localizable", comment: "") // test_value
 }
 
 ```
@@ -40,13 +40,9 @@ foo@bar:~$ pip install -U pyxstr2swift
 ```
 
 ```bash
-foo@bar:~$ xstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
-foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
+foo@bar:~$ xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
+foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
 ```
-
-For using it, you should import a string extension library or write it.
-Below the library help you to use it easily.
-https://github.com/ocworld/OHSwiftLocalizedString
 
 
 To use it in Xcode build pharses,
@@ -84,26 +80,27 @@ source ~/.bash_profile
 # a conda env is already created that name is iosdev
 conda activate iosdev
 pip install --upgrade pyxstr2swift
-xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localizable.strings" "${SRCROOT}/My Project/Localizable.swift" "Localizable"
+xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localizable.strings" "${SRCROOT}/My Project/Localizable.swift"
 conda deactivate
 ```
 
 7. That' all! build Your project now!
 
 ```bash
-usage: xstr2swift [-h] [-f] [-m] source target structname
+usage: xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
 
 pyxstr2swift needs arguments
 
 positional arguments:
-  source         Input source a strings file
-  target         Input target a swift file
-  structname     Input target a swift struct name
+  source                source: a strings file
+  target                target: a swift file
 
 optional arguments:
-  -h, --help     show this help message and exit
-  -f, --force    force to write a target file if already exist
-  -m, --comment  values are added as comment
+  -h, --help            show this help message and exit
+  --structname STRUCTNAME
+                        structname: a struct name in a target file
+  -f, --force           force to write a target file if already exist
+  -m, --comment         values are added as comment
 ```
 
 ## Test
