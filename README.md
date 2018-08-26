@@ -28,7 +28,7 @@ to
 import Foundation
 
 struct Localizable {
-  static let test = "test".localized // test_value
+  static let test = NSLocalizedString("test", tableName: "Localizable", comment: "") // test_value
 }
 
 ```
@@ -40,13 +40,9 @@ foo@bar:~$ pip install -U pyxstr2swift
 ```
 
 ```bash
-foo@bar:~$ xstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
-foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [source_path] [target_path] [struct_name]
+foo@bar:~$ xstr2swift [-f] [-m] [--structname=value] [source_path] [target_path]
+foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [--structname=value] [source_path] [target_path]
 ```
-
-For using it, you should import a string extension library or write it.
-Below the library help you to use it easily.
-https://github.com/ocworld/OHSwiftLocalizedString
 
 
 To use it in Xcode build pharses,
@@ -84,7 +80,7 @@ source ~/.bash_profile
 # a conda env is already created that name is iosdev
 conda activate iosdev
 pip install --upgrade pyxstr2swift
-xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localizable.strings" "${SRCROOT}/My Project/Localizable.swift" "Localizable"
+xstr2swift -f -m "${SRCROOT}/My Project/en.lproj/Localizable.strings" "${SRCROOT}/My Project/Localizable.swift"
 conda deactivate
 ```
 
