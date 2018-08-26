@@ -40,8 +40,8 @@ foo@bar:~$ pip install -U pyxstr2swift
 ```
 
 ```bash
-foo@bar:~$ xstr2swift [-f] [-m] [--structname=value] [source_path] [target_path]
-foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-f] [-m] [--structname=value] [source_path] [target_path]
+foo@bar:~$ xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
+foo@bar:~$ python -m pyxstr2swift.pyxstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
 ```
 
 
@@ -87,19 +87,20 @@ conda deactivate
 7. That' all! build Your project now!
 
 ```bash
-usage: xstr2swift [-h] [-f] [-m] source target structname
+usage: xstr2swift [-h] [--structname STRUCTNAME] [-f] [-m] source target
 
 pyxstr2swift needs arguments
 
 positional arguments:
-  source         Input source a strings file
-  target         Input target a swift file
-  structname     Input target a swift struct name
+  source                source: a strings file
+  target                target: a swift file
 
 optional arguments:
-  -h, --help     show this help message and exit
-  -f, --force    force to write a target file if already exist
-  -m, --comment  values are added as comment
+  -h, --help            show this help message and exit
+  --structname STRUCTNAME
+                        structname: a struct name in a target file
+  -f, --force           force to write a target file if already exist
+  -m, --comment         values are added as comment
 ```
 
 ## Test
