@@ -69,7 +69,7 @@ For example,
 #If you use anaconda, anaconda3/bin should be added to path
 #export PATH="${HOME}/anaconda3/bin:$PATH"
 pip install --upgrade pyxstr2swift
-xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localizable.strings" "${SRCROOT}/Your project/Localizable.swift" "Localizable"
+xstr2swift -f -m "${SRCROOT}/Your project/en.lproj/Localizable.strings" "${SRCROOT}/Your project/Localizable.swift"
 ```
 
 My project's shell command is that
