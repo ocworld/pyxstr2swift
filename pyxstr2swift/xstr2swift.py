@@ -5,6 +5,7 @@ import logging
 import os
 import io
 
+
 def _get_keys_and_values_from_strings_file(strings_file_path):
     """
     get keys_and_values from xcode strings file
@@ -40,7 +41,8 @@ def _get_keys_and_values_from_strings_file(strings_file_path):
     return kv_dic
 
 
-def _write_keys_to_swift_file(kv_dic, out_file_path, tablename="", swift_struct_name="", is_write_values_as_comment=False):
+def _write_keys_to_swift_file(kv_dic, out_file_path, tablename="", swift_struct_name="",
+                              is_write_values_as_comment=False):
     '''
     write string keys to swift file.
     :param kv_dic: dictionary for keys and values
@@ -57,10 +59,11 @@ def _write_keys_to_swift_file(kv_dic, out_file_path, tablename="", swift_struct_
     taillines = ["}", ""]
 
     if is_write_values_as_comment:
-        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\") // %s" % (key, key, tablename, value) for key, value in kv_dic.items()]
+        bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\") // %s" % (
+            key, key, tablename, value) for key, value in kv_dic.items()]
     else:
         bodylines = ["  static let %s = NSLocalizedString(\"%s\", tableName: \"%s\", comment: \"\")" % (
-        key, key, tablename) for key in kv_dic.keys()]
+            key, key, tablename) for key in kv_dic.keys()]
 
     lines = headlines + bodylines + taillines
 
@@ -147,18 +150,32 @@ def main():
 
     parser.add_argument('source', type=str, help='source: a strings file')
     parser.add_argument('target', type=str, help='target: a swift file')
-    parser.add_argument('--structname', type=str, default="", help='structname: a struct name in a target file')
+    parser.add_argument('-st', '--structname', type=str, default="", help='structname: a struct name in a target file')
     parser.add_argument('-f', '--force', action='store_true', help='force to write a target file if already exist')
     parser.add_argument('-m', '--comment', action='store_true', help='values are added as comment')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Display console output')
+
     args = parser.parse_args()
 
     is_forced = True if args.force else False
     is_comment_value = True if args.comment else False
+    is_verbose = True if args.verbose else False
+
+    if is_verbose:
+        import sys
+        handler = logging.StreamHandler(sys.stdout)
+        handler.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger = logging.getLogger()
+        logger.addHandler(handler)
+
     logging.info('source : %s' % args.source)
     logging.info('target : %s' % args.target)
     logging.info('structname : %s' % args.structname)
     logging.info('is_forced : %s' % 'True' if args.force else 'False')
-    logging.info('is_comment_value : %s' % 'True' if args.comment else 'False')
+    logging.info('is_verbose : %s' % 'True' if args.force else 'False')
+    logging.info('is_comment_value : %s' % 'True' if args.verbose else 'False')
 
     xstr2swift(args.source, args.target, args.structname, is_forced, is_comment_value)
 
