@@ -167,6 +167,7 @@ def main():
         handler.setLevel(logging.DEBUG)
         formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
         handler.setFormatter(formatter)
+        logging.getLogger().setLevel(logging.DEBUG)
         logging.getLogger().addHandler(handler)
 
     logging.info('source : %s' % args.source)
