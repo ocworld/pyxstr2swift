@@ -103,7 +103,7 @@ def xstr2swift(strings_file_path, out_file_path,
             logging.info('xstr2swift: %s is removed' % out_file_path)
             os.remove(out_file_path)
         else:
-            logging.error('xstr2swift: %s is not exist' % out_file_path)
+            logging.error('xstr2swift: %s is already exist' % out_file_path)
             raise OSError(17)  # EEXIST
 
     logging.info('xstr2swift: try to get_keys_from_strings_file(%s)' % out_file_path)
@@ -165,10 +165,9 @@ def main():
         import sys
         handler = logging.StreamHandler(sys.stdout)
         handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('[%(asctime)s][%(name)s][%(levelname)s] %(message)s')
         handler.setFormatter(formatter)
-        logger = logging.getLogger()
-        logger.addHandler(handler)
+        logging.getLogger().addHandler(handler)
 
     logging.info('source : %s' % args.source)
     logging.info('target : %s' % args.target)
