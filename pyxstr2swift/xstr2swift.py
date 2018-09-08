@@ -94,6 +94,8 @@ def xstr2swift(strings_file_path, out_file_path,
     :param overwrite_if_out_path_exist: overwrite if a outpath already exist.
     :return:
     '''
+    logging.info('xstr2swift: Try to convert (%s) to (%s)' % (strings_file_path, out_file_path))
+
     if not os.path.exists(strings_file_path):
         logging.error('xstr2swift: %s is not exist' % strings_file_path)
         raise OSError(2)  # ENOENT
@@ -141,6 +143,8 @@ def xstr2swift(strings_file_path, out_file_path,
         logging.error('xstr2swift: failed to write_keys_to_swift_file %s with exception (no: %d)(err: %s)' % (
             strings_file_path, ex.errno, ex.message))
         raise ex
+
+    logging.info('xstr2swift: Success to convert (%s) to (%s)' % (strings_file_path, out_file_path))
 
 
 def main():
