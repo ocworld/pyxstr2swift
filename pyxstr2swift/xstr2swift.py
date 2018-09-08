@@ -164,8 +164,8 @@ def main():
     if is_verbose:
         import sys
         handler = logging.StreamHandler(sys.stdout)
-        handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('[%(asctime)s][%(name)s][%(levelname)s] %(message)s')
+        handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
         handler.setFormatter(formatter)
         logging.getLogger().addHandler(handler)
 
