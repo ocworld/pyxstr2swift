@@ -1,58 +1,52 @@
 # -*- coding: utf-8 -*-
 
+# Learn more: https://github.com/kennethreitz/setup.py
+
 from setuptools import setup, find_packages
 
-with open('README.md', mode='r', encoding='utf-8') as f:
-    readme = f.read()
+with open('README.md') as f:
+    readme = f.read()  # type: str
 
-with open('LICENSE', mode='r', encoding='utf-8') as f:
-    license_text = f.read()
+with open('LICENSE') as f:
+    license = f.read() # type: str
 
 setup(
-    name='nart',
-    version='1.0.1',
-    description='NART: Naver RealTime Keyword',
+    name='pyxstr2swift',
+    version='0.1.0',
+    description='Python package for a xcode strings file to a swift localized string file',
     long_description=readme,
     author='Keunhyun Oh',
     author_email='ocworld@gmail.com',
-    url='https://github.com/ocworld/nart',
-    license=license_text,
+    url='https://github.com/ocworld/pyxstr2swift',
+    license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['any'],
-    install_requires=[
-        'requests==2.21.0',
-        'schedule==0.6.0',
-        'beautifulsoup4==4.7.1',
-        'python-crontab==2.3.6',
-        'schedule==0.6.0',
-    ],
     setup_requires=[
-        'pytest-runner==4.4',
+        'pytest-runner',
     ],
     tests_require=[
-        'pytest==4.3.0',
+        'pytest',
     ],
     entry_points={
-        'console_scripts': ['nart=nart.main:main'],
+        'console_scripts': ['xstr2swift=pyxstr2swift.xstr2swift:main'],
     },
     classifiers={
-        'Programming Language :: Python',
         'Environment :: Console',
         'Environment :: MacOS X',
-        'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X',
-        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python',
         'Intended Audience :: Developers',
-        'Intended Audience :: Information Technology',
-        'Intended Audience :: Science/Research',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Office/Business :: News/Diary',
+        'Topic :: Software Development :: Code Generators',
         'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     },
-    project_url={
-        'Bug Reports': 'https://github.com/ocworld/nart/issues',
-        'Source': 'https://github.com/ocworld/nart'
+    project_urls={  # Optional
+        'Bug Reports': 'https://github.com/ocworld/pyxstr2swift/issues',
+        'Source': 'https://github.com/ocworld/pyxstr2swift'
     }
 )
