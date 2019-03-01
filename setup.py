@@ -10,7 +10,7 @@ with open('LICENSE', mode='r', encoding='utf-8') as f:
 
 setup(
     name='nart',
-    version='1.0',
+    version='1.0.1',
     description='NART: Naver RealTime Keyword',
     long_description=readme,
     author='Keunhyun Oh',
